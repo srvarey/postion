@@ -1,0 +1,24 @@
+branding.token=gaiama
+cluster.path=\
+    ${nbplatform.active.dir}/platform
+disabled.modules=\
+    org.netbeans.api.visual,\
+    org.netbeans.core.execution,\
+    org.netbeans.core.netigso,\
+    org.netbeans.core.osgi,\
+    org.netbeans.libs.felix,\
+    org.netbeans.libs.junit4,\
+    org.netbeans.libs.osgi,\
+    org.netbeans.modules.autoupdate.services,\
+    org.netbeans.modules.autoupdate.ui,\
+    org.netbeans.modules.core.kit,\
+    org.netbeans.modules.javahelp,\
+    org.netbeans.modules.masterfs.linux,\
+    org.netbeans.modules.masterfs.macosx,\
+    org.netbeans.modules.masterfs.solaris,\
+    org.netbeans.modules.netbinox,\
+    org.netbeans.modules.perspective,\
+    org.openide.compat,\
+    org.openide.execution,\
+    org.openide.util.enumerations
+nbplatform.active=default

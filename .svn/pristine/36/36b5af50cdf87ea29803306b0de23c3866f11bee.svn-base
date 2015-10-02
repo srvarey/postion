@@ -1,0 +1,59 @@
+#### Use Three appenders,
+#stdout - is used for write to console
+#R - is used for write to file
+log4j.rootLogger=INFO, stdout, R
+# Print only messages of priority WARN or higher for your category
+# log4j.category.your.category.name=WARN
+# Specifically inherit the priority level
+#log4j.category.your.category.name=INHERITED
+# Print only messages of level WARN or above in the package
+#This is use for debuging mode
+log4j.logger.testlogging=INFO
+#### Appender writes to console
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+# Pattern to output the caller's file name and line number.
+#log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd} %5p [%t] (%F:%L) - %m%n
+#### Appender writes to a file
+#log4j.appender.R=org.apache.log4j.FileAppender
+log4j.appender.R=org.apache.log4j.RollingFileAppender
+log4j.appender.R.File=./server.log
+# Control the maximum log file size
+log4j.appender.R.MaxFileSize=10MB
+# Archive log files (one backup file here)
+log4j.appender.R.MaxBackupIndex=1
+log4j.appender.R.layout=org.apache.log4j.PatternLayout
+log4j.appender.R.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %5p [%t] (%F:%L) - %m%n
+#log4j.appender.R.layout.ConversionPattern=%n%p - %m
+log4j.logger.org.hibernate=warn
+#log4j.logger.org.hibernate=debug
+### log HQL query parser activity
+#log4j.logger.org.hibernate.hql.ast.AST=debug
+### log just the SQL
+log4j.logger.org.hibernate.SQL=DEBUG
+### log JDBC bind parameters ###
+# log4j.logger.org.hibernate.type=info
+# log4j.logger.org.hibernate.type=debug
+## log schema export/update ###
+# log4j.logger.org.hibernate.tool.hbm2ddl=debug
+### log HQL parse trees
+#log4j.logger.org.hibernate.hql=debug
+### log cache activity ###
+log4j.logger.org.hibernate.cache=info
+### log transaction activity
+#log4j.logger.org.hibernate.transaction=debug
+### log JDBC resource acquisition
+#log4j.logger.org.hibernate.jdbc=debug
+### enable the following line if you want to track down connection ###
+### leakages when using DriverManagerConnectionProvider ###
+#log4j.logger.org.hibernate.connection.DriverManagerConnectionProvider=trace
+#log4j.logger.org.hibernate.hql=debug
+### log cache activity ###
+#log4j.logger.org.hibernate.cache=debug
+### log transaction activity
+#log4j.logger.org.hibernate.transaction=debug
+### log JDBC resource acquisition
+#log4j.logger.org.hibernate.jdbc=debug
+### enable the following line if you want to track down connection ###
+### leakages when using DriverManagerConnectionProvider ###
+#log4j.logger.org.hibernate.connection.DriverManagerConnectionProvider=trace

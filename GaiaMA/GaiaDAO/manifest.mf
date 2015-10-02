@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gaia.dao
+OpenIDE-Module-Localizing-Bundle: org/gaia/dao/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

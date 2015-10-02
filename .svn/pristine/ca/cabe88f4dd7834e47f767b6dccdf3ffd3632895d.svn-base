@@ -1,0 +1,1062 @@
+/**
+ * Copyright (C) 2013 Gaia Transparence Gaia Transparence, 1 allée Paul Barillon
+ * - 94300 VINCENNES
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation, either version 3.0 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.gaia.gui.assets;
+
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import org.apache.log4j.Logger;
+import org.gaia.dao.jade.DAOCallerAgent;
+import org.gaia.dao.legalEntity.LegalEntityAccessor;
+import org.gaia.dao.referentials.CalendarAccessor;
+import org.gaia.dao.referentials.CountryAccessor;
+import org.gaia.dao.referentials.CurrencyAccessor;
+import org.gaia.dao.referentials.RatingsAccessor;
+import org.gaia.dao.trades.ProductConst;
+import org.gaia.domain.legalEntity.CreditEntity;
+import org.gaia.domain.legalEntity.LegalEntity;
+import org.gaia.domain.legalEntity.LegalEntityAttribute;
+import org.gaia.domain.legalEntity.LegalEntityRole;
+import org.gaia.domain.referentials.Rating;
+import org.gaia.domain.utils.StringUtils;
+import org.gaia.gui.common.MenuManager;
+import org.gaia.gui.referentials.CreditContractTopComponent;
+import org.gaia.gui.utils.GUIUtils;
+import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
+import org.openide.util.NbBundle.Messages;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.windows.Mode;
+import org.openide.windows.TopComponent;
+import org.openide.windows.WindowManager;
+
+/**
+ * Top component which displays legal entities.
+ */
+@ConvertAsProperties(dtd = "-//org.gaia.gui.legalentity//LegalEntity//EN", autostore = false)
+@TopComponent.Description(preferredID = "LegalEntityTopComponent", iconBase = "org/gaia/gui/assets/entities.png", persistenceType = TopComponent.PERSISTENCE_NEVER)
+@TopComponent.Registration(mode = "editor", openAtStartup = false)
+@ActionID(category = "Window", id = "org.gaia.gui.legalentity.LegalEntityTopComponent")
+@ActionReference(path = "Menu" + MenuManager.LegalEntityTopComponentMenu, position = MenuManager.LegalEntityTopComponent)
+@TopComponent.OpenActionRegistration(displayName = "#CTL_LegalEntityAction")
+@Messages({"CTL_LegalEntityAction=Legal Entity", "CTL_LegalEntityTopComponent=Legal Entity", "HINT_LegalEntityTopComponent=This is a Legal Entity window"})
+public final class LegalEntityTopComponent extends TopComponent {
+
+    private LegalEntity legalEntity;
+    private ArrayList<LegalEntityAttribute> removedAttributes = new ArrayList();
+    protected final InstanceContent content = new InstanceContent();
+    private boolean isCreditEntity = false;
+    public static final NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+    private static final Logger logger = Logger.getLogger(LegalEntityTopComponent.class);
+
+    public LegalEntityTopComponent() {
+        initComponents();
+        setName(Bundle.CTL_LegalEntityTopComponent());
+        setToolTipText(Bundle.HINT_LegalEntityTopComponent());
+        jComboBoxStatus.addItem(ProductConst.ProductStatus.Active.name());
+        jComboBoxStatus.addItem(ProductConst.ProductStatus.Inactive.name());
+        associateLookup(new AbstractLookup(content));
+        jScrollPane3.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane3.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        List<String> contracts = (List) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_CREDIT_CONTRACT_TYPE_NAMES);
+        GUIUtils.fillComboWithNullFirst(contratTypeComboBox, contracts);
+        displayList();
+    }
+
+    public LegalEntity getLegalEntity() {
+        return legalEntity;
+    }
+
+    public void setLegalEntity(LegalEntity legalEntity) {
+        this.legalEntity = legalEntity;
+        content.set(Collections.emptyList(), null);
+        content.add(legalEntity);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEntitiesList = new javax.swing.JTable();
+        queryjButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelShortName = new javax.swing.JLabel();
+        jTextFieldShortName = new javax.swing.JTextField();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+        jButtonNew = new javax.swing.JButton();
+        jComboBoxStatus = new javax.swing.JComboBox();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableRoles = new javax.swing.JTable();
+        jButtonAddRole = new javax.swing.JButton();
+        jLabelRoles = new javax.swing.JLabel();
+        jButtonRemoveRole = new javax.swing.JButton();
+        jLabelLongName = new javax.swing.JLabel();
+        jTextFieldLongName = new javax.swing.JTextField();
+        jLabelParent = new javax.swing.JLabel();
+        jComboBoxParent = new javax.swing.JComboBox();
+        jLabelComment = new javax.swing.JLabel();
+        jLabelCountry = new javax.swing.JLabel();
+        jComboBoxCountry = new javax.swing.JComboBox();
+        jLabelHolidays = new javax.swing.JLabel();
+        jComboBoxHolidays = new javax.swing.JComboBox();
+        jComboBoxRoles = new javax.swing.JComboBox();
+        jLabelCurrency = new javax.swing.JLabel();
+        jComboBoxCurrency = new javax.swing.JComboBox();
+        jLabelMoodys = new javax.swing.JLabel();
+        jComboBoxMoodys = new javax.swing.JComboBox();
+        jLabelSP = new javax.swing.JLabel();
+        jComboBoxSP = new javax.swing.JComboBox();
+        jLabelFitch = new javax.swing.JLabel();
+        jComboBoxFitch = new javax.swing.JComboBox();
+        jButtonSaveAsnew = new javax.swing.JButton();
+        attributesjButton = new javax.swing.JButton();
+        creditEntityPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        defaultCouponTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        contratTypeComboBox = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        creditEventsButton = new javax.swing.JButton();
+        showContractButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaComment = new javax.swing.JTextArea();
+        jLabelId = new javax.swing.JLabel();
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTableEntitiesList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Name","Long Name"
+            }
+        ));
+        jTableEntitiesList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableEntitiesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEntitiesListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableEntitiesList);
+
+        queryjButton.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(queryjButton, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.queryjButton.text")); // NOI18N
+        queryjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryjButtonActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(254, 252, 254));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setToolTipText(org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jPanel1.toolTipText")); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(750, 559));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelShortName, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelShortName.text")); // NOI18N
+
+        jTextFieldShortName.setName("jTextFieldShortName"); // NOI18N
+
+        jButtonDelete.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonDelete, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonDelete.text")); // NOI18N
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jButtonSave.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonSave, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonSave.text")); // NOI18N
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+
+        jButtonNew.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonNew, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonNew.text")); // NOI18N
+        jButtonNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewActionPerformed(evt);
+            }
+        });
+
+        jComboBoxStatus.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Active", "Inactive" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelStatus, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelStatus.text")); // NOI18N
+
+        jTableRoles.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTableRoles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Date"
+            }
+        ));
+        jTableRoles.setName("jTableRoles"); // NOI18N
+        jScrollPane2.setViewportView(jTableRoles);
+
+        jButtonAddRole.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddRole, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonAddRole.text")); // NOI18N
+        jButtonAddRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddRoleActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelRoles, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelRoles.text")); // NOI18N
+
+        jButtonRemoveRole.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonRemoveRole, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonRemoveRole.text")); // NOI18N
+        jButtonRemoveRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveRoleActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelLongName, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelLongName.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelParent, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelParent.text")); // NOI18N
+
+        jComboBoxParent.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxParent.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        jComboBoxParent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxParentActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelComment, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelComment.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelCountry, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelCountry.text")); // NOI18N
+
+        jComboBoxCountry.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
+        }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelHolidays, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelHolidays.text")); // NOI18N
+
+        jComboBoxHolidays.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxHolidays.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        jComboBoxRoles.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxRoles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
+        jComboBoxRoles.setName("jComboBoxRoles"); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelCurrency, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelCurrency.text")); // NOI18N
+
+        jComboBoxCurrency.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxCurrency.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelMoodys, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelMoodys.text")); // NOI18N
+
+        jComboBoxMoodys.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMoodys.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelSP, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelSP.text")); // NOI18N
+
+        jComboBoxSP.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelFitch, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabelFitch.text")); // NOI18N
+
+        jComboBoxFitch.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxFitch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        jButtonSaveAsnew.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonSaveAsnew, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jButtonSaveAsnew.text")); // NOI18N
+        jButtonSaveAsnew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveAsnewActionPerformed(evt);
+            }
+        });
+
+        attributesjButton.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(attributesjButton, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.attributesjButton.text_1")); // NOI18N
+        attributesjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attributesjButtonActionPerformed(evt);
+            }
+        });
+
+        creditEntityPanel.setBackground(new java.awt.Color(254, 252, 254));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabel2.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabel3.text")); // NOI18N
+
+        defaultCouponTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        defaultCouponTextField.setText(org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.defaultCouponTextField.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabel4.text")); // NOI18N
+
+        contratTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        contratTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { StringUtils.SPACE, "Standard North-American", "Standard European", "Other" }));
+        contratTypeComboBox.setName("contratTypeComboBox"); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.jLabel5.text")); // NOI18N
+
+        creditEventsButton.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(creditEventsButton, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.creditEventsButton.text_1")); // NOI18N
+        creditEventsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditEventsButtonActionPerformed(evt);
+            }
+        });
+
+        showContractButton.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(showContractButton, org.openide.util.NbBundle.getMessage(LegalEntityTopComponent.class, "LegalEntityTopComponent.showContractButton.text_1")); // NOI18N
+        showContractButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showContractButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout creditEntityPanelLayout = new javax.swing.GroupLayout(creditEntityPanel);
+        creditEntityPanel.setLayout(creditEntityPanelLayout);
+        creditEntityPanelLayout.setHorizontalGroup(
+            creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creditEntityPanelLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(creditEntityPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(creditEntityPanelLayout.createSequentialGroup()
+                        .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(creditEntityPanelLayout.createSequentialGroup()
+                                .addComponent(defaultCouponTextField)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5))
+                            .addComponent(contratTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creditEntityPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showContractButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(creditEventsButton, javax.swing.GroupLayout.Alignment.TRAILING)))))
+        );
+        creditEntityPanelLayout.setVerticalGroup(
+            creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creditEntityPanelLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(defaultCouponTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(creditEntityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(contratTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(showContractButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(creditEventsButton)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jTextAreaComment.setColumns(20);
+        jTextAreaComment.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaComment);
+
+        jLabelId.setName("jLabelId"); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSaveAsnew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDelete))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelShortName)
+                            .addComponent(jLabelLongName)
+                            .addComponent(jLabelParent)
+                            .addComponent(jLabelMoodys)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelFitch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelComment, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCurrency)
+                            .addComponent(jLabelStatus)
+                            .addComponent(jLabelCountry)
+                            .addComponent(jLabelHolidays))
+                        .addGap(20, 20, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBoxMoodys, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxFitch, 0, 62, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldLongName)
+                                .addComponent(jComboBoxParent, 0, 168, Short.MAX_VALUE)
+                                .addComponent(jComboBoxCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxHolidays, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldShortName))
+                            .addComponent(jComboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonRemoveRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonAddRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabelRoles)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jComboBoxRoles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(creditEntityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(attributesjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelShortName)
+                                    .addComponent(jTextFieldShortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelLongName)
+                                    .addComponent(jTextFieldLongName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxParent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelParent))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelCurrency))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxHolidays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelHolidays))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelCountry)
+                                    .addComponent(jComboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxMoodys, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelMoodys))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelSP)
+                                    .addComponent(jComboBoxSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelFitch)
+                                    .addComponent(jComboBoxFitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelComment)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 520, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(24, 24, 24)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonSave)
+                                .addComponent(jButtonDelete)
+                                .addComponent(jButtonNew)
+                                .addComponent(jButtonSaveAsnew))
+                            .addComponent(jLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(creditEntityPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(attributesjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelRoles)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAddRole)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonRemoveRole))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(queryjButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(queryjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jTableEntitiesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEntitiesListMouseClicked
+        /**
+         * Refresh on click
+         */
+        loadEntity();
+    }//GEN-LAST:event_jTableEntitiesListMouseClicked
+
+    private void queryjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryjButtonActionPerformed
+        /**
+         * display all
+         */
+        displayList();
+    }//GEN-LAST:event_queryjButtonActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        try {
+            if (!jTextFieldShortName.getText().isEmpty()) {
+                int ret = JOptionPane.showConfirmDialog(this, "Confirm you want to delete " + jTextFieldShortName.getText() + "?", "Confirm", JOptionPane.OK_CANCEL_OPTION);
+                if (ret == JOptionPane.OK_OPTION) {
+                    String msg = (String) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.DELETE_LEGAL_ENTITY, legalEntity);
+                    if (StringUtils.isEmptyString(msg)) {
+                        emptyData();
+                        displayList();
+                    } else {
+                        JOptionPane.showMessageDialog(this, msg);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            logger.error(StringUtils.formatErrorMessage(ex));
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        /**
+         * store data
+         */
+        storeLegalEntity();
+
+        JOptionPane.showMessageDialog(this, "Done.");
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewActionPerformed
+        /**
+         * New
+         */
+        emptyData();
+    }//GEN-LAST:event_jButtonNewActionPerformed
+
+    private void jButtonAddRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRoleActionPerformed
+        /**
+         * Add Role
+         */
+        DefaultTableModel tableModel = (DefaultTableModel) jTableRoles.getModel();
+        Object[] row = new Object[1];
+        row[0] = jComboBoxRoles.getSelectedItem().toString();
+        tableModel.addRow(row);
+        jTableRoles.setModel(tableModel);
+        List<LegalEntityRole> entityRoles = new ArrayList();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            LegalEntityRole role = new LegalEntityRole();
+            role.setRole(tableModel.getValueAt(i, 0).toString());
+            entityRoles.add(role);
+        }
+        getIsCreditEntity(entityRoles);
+        creditEntityPanel.setVisible(isCreditEntity);
+    }//GEN-LAST:event_jButtonAddRoleActionPerformed
+
+    private void jButtonRemoveRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveRoleActionPerformed
+        /**
+         * Remove Role
+         */
+        DefaultTableModel tableModel = (DefaultTableModel) jTableRoles.getModel();
+        int selectedRow = jTableRoles.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            tableModel.removeRow(selectedRow);
+        }
+        List<LegalEntityRole> entityRoles = new ArrayList();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            LegalEntityRole role = new LegalEntityRole();
+            role.setRole(tableModel.getValueAt(i, 0).toString());
+            entityRoles.add(role);
+        }
+        getIsCreditEntity(entityRoles);
+        creditEntityPanel.setVisible(isCreditEntity);
+    }//GEN-LAST:event_jButtonRemoveRoleActionPerformed
+
+    private void jButtonSaveAsnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveAsnewActionPerformed
+
+        jLabelId.setText("");
+        removedAttributes = null;
+        legalEntity = null;
+        storeLegalEntity();
+        JOptionPane.showMessageDialog(this, "Done.");
+    }//GEN-LAST:event_jButtonSaveAsnewActionPerformed
+
+    private void jComboBoxParentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxParentActionPerformed
+    }//GEN-LAST:event_jComboBoxParentActionPerformed
+
+    private void attributesjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attributesjButtonActionPerformed
+        if (legalEntity != null) {
+            WindowManager wm = WindowManager.getDefault();
+            LegalEntitiesEditorTopComponent legalEntitiesPropertiesEditorTopComponent = (LegalEntitiesEditorTopComponent) wm.findTopComponent("LegalEntitiesEditorTopComponent");
+            if (legalEntitiesPropertiesEditorTopComponent == null) {
+                legalEntitiesPropertiesEditorTopComponent = new LegalEntitiesEditorTopComponent();
+            }
+            Mode mode = WindowManager.getDefault().findMode("properties");
+            if (mode != null) {
+                mode.dockInto(legalEntitiesPropertiesEditorTopComponent);
+            }
+            legalEntitiesPropertiesEditorTopComponent.setEntity(legalEntity);
+            legalEntitiesPropertiesEditorTopComponent.open();
+            legalEntitiesPropertiesEditorTopComponent.requestActive();
+        }
+    }//GEN-LAST:event_attributesjButtonActionPerformed
+
+    private void creditEventsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditEventsButtonActionPerformed
+
+        CreditEventTopComponent creditEventTopComponent = new CreditEventTopComponent();
+        creditEventTopComponent.open();
+        creditEventTopComponent.setCreditEntity(GUIUtils.getComponentStringValue(jTextFieldShortName));
+        creditEventTopComponent.requestActive();
+    }//GEN-LAST:event_creditEventsButtonActionPerformed
+
+    private void showContractButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showContractButtonActionPerformed
+
+        if (contratTypeComboBox.getSelectedItem() != null) {
+            CreditContractTopComponent creditContractTopComponent = new CreditContractTopComponent();
+            creditContractTopComponent.open();
+            creditContractTopComponent.setActiveContract(contratTypeComboBox.getSelectedItem().toString());
+            creditContractTopComponent.requestActive();
+        }
+    }//GEN-LAST:event_showContractButtonActionPerformed
+
+    /**
+     * display list of legal entity
+     */
+    private void displayList() {
+        try {
+            List<LegalEntity> entities = (List) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.LOAD_ALL_LEGAL_ENTITIES);
+
+            DefaultTableModel tableModel = (DefaultTableModel) jTableEntitiesList.getModel();
+            while (jTableEntitiesList.getRowCount() > 0) {
+                tableModel.removeRow(0);
+            }
+            for (LegalEntity entity : entities) {
+                Object[] row = new Object[2];
+                row[0] = entity.getShortName();
+                row[1] = entity.getLongName();
+                tableModel.addRow(row);
+            }
+        } catch (Exception ex) {
+            logger.error(StringUtils.formatErrorMessage(ex));
+        }
+    }
+
+    public void loadEntity(String entityName) {
+        int select = -1;
+        for (int i = 0; i < jTableEntitiesList.getRowCount(); i++) {
+            if (GUIUtils.getTableValueAt(jTableEntitiesList, i, 0).equalsIgnoreCase(entityName)) {
+                select = i;
+            }
+        }
+        if (select >= 0) {
+            jTableEntitiesList.setRowSelectionInterval(select, select);
+            loadEntity();
+        }
+    }
+
+    /**
+     * refresh data
+     */
+    public void loadEntity() {
+        int rownum = jTableEntitiesList.getSelectedRow();
+        if (rownum >= 0) {
+
+            String entityName = GUIUtils.getTableValueAt(jTableEntitiesList, rownum, 0);
+            if (entityName != null) {
+                try {
+                    removedAttributes = new ArrayList<>();
+                    legalEntity = (LegalEntity) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_LEGAL_ENTITY_BY_SHORT_NAME, entityName);
+                    jTextFieldShortName.setText(legalEntity.getShortName());
+                    jTextFieldLongName.setText(legalEntity.getLongName());
+                    jTextAreaComment.setText(legalEntity.getComments());
+                    jComboBoxStatus.setSelectedItem(legalEntity.getLegalEntityStatus());
+                    jComboBoxCountry.setSelectedItem(legalEntity.getCountry());
+                    if (legalEntity.getParent() != null) {
+                        jComboBoxParent.setSelectedItem(legalEntity.getParent().getShortName());
+                    } else {
+                        jComboBoxParent.setSelectedItem(null);
+                    }
+                    jComboBoxHolidays.setSelectedItem(legalEntity.getHolidays());
+                    jComboBoxCurrency.setSelectedItem(legalEntity.getBaseCurrency());
+                    jLabelId.setText(legalEntity.getLegalEntityId().toString());
+                    Collection<LegalEntityRole> entityRoles = legalEntity.getRoles();
+
+                    DefaultTableModel tableModel = (DefaultTableModel) jTableRoles.getModel();
+                    GUIUtils.clearTableModel(tableModel);
+                    for (LegalEntityRole role : entityRoles) {
+                        tableModel.addRow(new Object[]{role.getRole()});
+                    }
+                    getIsCreditEntity(entityRoles);
+                    creditEntityPanel.setVisible(isCreditEntity);
+                    jComboBoxMoodys.setSelectedIndex(0);
+                    jComboBoxSP.setSelectedIndex(0);
+                    jComboBoxFitch.setSelectedIndex(0);
+                    ArrayList<Rating> ratings = (ArrayList) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_LEGAL_ENTITY_RATINGS, legalEntity.getLegalEntityId());
+                    if (ratings != null) {
+                        for (Rating rating : ratings) {
+                            switch (rating.getAgency()) {
+                                case RatingsAccessor.MOODYS:
+                                    jComboBoxMoodys.setSelectedItem(rating.getRating());
+                                    break;
+                                case RatingsAccessor.SP:
+                                    jComboBoxSP.setSelectedItem(rating.getRating());
+                                    break;
+                                case RatingsAccessor.FITCH:
+                                    jComboBoxFitch.setSelectedItem(rating.getRating());
+                                    break;
+                            }
+                        }
+                    }
+                    contratTypeComboBox.setSelectedIndex(0);
+                    defaultCouponTextField.setText(StringUtils.EMPTY_STRING);
+                    if (isCreditEntity && legalEntity.getLegalEntityId() != null) {
+                        CreditEntity creditEntity = (CreditEntity) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_CREDIT_ENTITY, legalEntity.getLegalEntityId());
+                        if (creditEntity != null && creditEntity.getDefaultCoupon() != null) {
+                            contratTypeComboBox.setSelectedItem(creditEntity.getDefaultContractType());
+                            defaultCouponTextField.setText(numberFormat.format(creditEntity.getDefaultCoupon().multiply(BigDecimal.valueOf(10000))));
+                        }
+                    }
+                } catch (Exception ex) {
+                    logger.error(StringUtils.formatErrorMessage(ex));
+                }
+            }
+        }
+        content.set(Collections.emptyList(), null);
+        content.add(legalEntity);
+    }
+
+    public void getIsCreditEntity(Collection<LegalEntityRole> entityRoles) {
+        isCreditEntity = false;
+        for (LegalEntityRole role : entityRoles) {
+            if (role.getRole().equalsIgnoreCase(LegalEntityRole.LegalEntityRoleEnum.ISSUER_ROLE.name)
+                    || role.getRole().equalsIgnoreCase(LegalEntityRole.LegalEntityRoleEnum.LEGAL_ENTITY_ROLE.name)) {
+                isCreditEntity = true;
+            }
+        }
+    }
+
+    /**
+     * store legal entity
+     */
+    public void storeLegalEntity() {
+        try {
+            if (legalEntity == null) {
+                legalEntity = new LegalEntity();
+            }
+
+            legalEntity.setShortName(jTextFieldShortName.getText());
+            legalEntity.setLongName(jTextFieldLongName.getText());
+            legalEntity.setComments(jTextAreaComment.getText());
+            if (jComboBoxCountry.getSelectedItem() != null) {
+                legalEntity.setCountry(jComboBoxCountry.getSelectedItem().toString());
+            }
+            if (jComboBoxHolidays.getSelectedItem() != null) {
+                legalEntity.setHolidays(jComboBoxHolidays.getSelectedItem().toString());
+            }
+            if (jComboBoxParent.getSelectedItem() != null && !jComboBoxParent.getSelectedItem().toString().isEmpty()) {
+                try {
+                    LegalEntity parent = (LegalEntity) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_LEGAL_ENTITY_BY_SHORT_NAME, jComboBoxParent.getSelectedItem().toString());
+                    legalEntity.setParent(parent);
+                } catch (Exception ex) {
+                    logger.error(StringUtils.formatErrorMessage(ex));
+                }
+            } else {
+                legalEntity.setParent(null);
+            }
+            if (jComboBoxStatus.getSelectedItem() != null) {
+                legalEntity.setLegalEntityStatus(jComboBoxStatus.getSelectedItem().toString());
+            }
+            if (!jLabelId.getText().isEmpty()) {
+
+                legalEntity.setLegalEntityId(Integer.parseInt(jLabelId.getText()));
+            }
+            legalEntity.setBaseCurrency(jComboBoxCurrency.getSelectedItem().toString());
+            legalEntity.setRatings(new ArrayList());
+            if (jComboBoxMoodys.getSelectedItem() != null) {
+                try {
+                    Rating rating = (Rating) DAOCallerAgent.callMethod(RatingsAccessor.class, RatingsAccessor.GET_RATING_BY_AGENY_AND_RATING,
+                            RatingsAccessor.MOODYS, jComboBoxMoodys.getSelectedItem().toString());
+                    if (rating != null) {
+                        legalEntity.getRatings().add(rating);
+                    }
+                } catch (Exception ex) {
+                    logger.error(StringUtils.formatErrorMessage(ex));
+                }
+            }
+            DefaultTableModel tableModel = (DefaultTableModel) jTableRoles.getModel();
+            HashSet roles = new HashSet();
+            for (int i = 0; i < tableModel.getRowCount(); i++) {
+                String roleName = tableModel.getValueAt(i, 0).toString();
+                LegalEntityRole role = (LegalEntityRole) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_LEGAL_ENTITY_ROLE_BY_LEGAL_ENTITY_ID_AND_ROLE,
+                        legalEntity.getLegalEntityId(), roleName);
+                if (role == null) {
+                    role = new LegalEntityRole();
+                }
+                role.setLegalEntity(legalEntity);
+                role.setRole(roleName);
+                role.setLegalEntity(legalEntity);
+                roles.add(role);
+            }
+            legalEntity.setRoles(roles);
+
+            if (removedAttributes != null) {
+                for (LegalEntityAttribute attribute : removedAttributes) {
+                    try {
+                        DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.DELETE_LEGAL_ENTITY_ATTRIBUTE, attribute);
+                    } catch (Exception ex) {
+                        logger.error(StringUtils.formatErrorMessage(ex));
+                    }
+                }
+            }
+
+            if (isCreditEntity && legalEntity.getLegalEntityId() != null) {
+                CreditEntity creditEntity = (CreditEntity) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_CREDIT_ENTITY, legalEntity.getLegalEntityId());
+                if (creditEntity == null) {
+                    creditEntity = new CreditEntity();
+                    creditEntity.setLegalEntity(legalEntity);
+                }
+                creditEntity.setDefaultContractType(GUIUtils.getComponentStringValue(contratTypeComboBox));
+                BigDecimal coupon = null;
+                try {
+                    coupon = new BigDecimal(numberFormat.parse(defaultCouponTextField.getText()).doubleValue()).divide(BigDecimal.valueOf(10000));
+                } catch (Exception e) {
+                    logger.error(StringUtils.formatErrorMessage(e));
+                }
+                creditEntity.setDefaultCoupon(coupon);
+                DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.STORE_CREDIT_ENTITY, creditEntity);
+            }
+
+            legalEntity = (LegalEntity) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.STORE_LEGAL_ENTITY, legalEntity);
+            jLabelId.setText(legalEntity.getLegalEntityId().toString());
+        } catch (Exception ex) {
+            logger.error(StringUtils.formatErrorMessage(ex));
+        }
+    }
+
+    private void emptyData() {
+        jTextFieldShortName.setText(StringUtils.EMPTY_STRING);
+        jTextFieldLongName.setText(StringUtils.EMPTY_STRING);
+        jTextAreaComment.setText(StringUtils.EMPTY_STRING);
+        jComboBoxParent.setSelectedIndex(0);
+        jComboBoxStatus.setSelectedIndex(0);
+        jLabelId.setText(StringUtils.EMPTY_STRING);
+        DefaultTableModel tm = (DefaultTableModel) jTableRoles.getModel();
+
+        while (jTableRoles.getRowCount() > 0) {
+            tm.removeRow(jTableRoles.getRowCount() - 1);
+        }
+        defaultCouponTextField.setText(StringUtils.EMPTY_STRING);
+        contratTypeComboBox.setSelectedIndex(0);
+
+        removedAttributes = null;
+        legalEntity = null;
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton attributesjButton;
+    private javax.swing.JComboBox contratTypeComboBox;
+    private javax.swing.JPanel creditEntityPanel;
+    private javax.swing.JButton creditEventsButton;
+    private javax.swing.JTextField defaultCouponTextField;
+    private javax.swing.JButton jButtonAddRole;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonNew;
+    private javax.swing.JButton jButtonRemoveRole;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSaveAsnew;
+    private javax.swing.JComboBox jComboBoxCountry;
+    private javax.swing.JComboBox jComboBoxCurrency;
+    private javax.swing.JComboBox jComboBoxFitch;
+    private javax.swing.JComboBox jComboBoxHolidays;
+    private javax.swing.JComboBox jComboBoxMoodys;
+    private javax.swing.JComboBox jComboBoxParent;
+    private javax.swing.JComboBox jComboBoxRoles;
+    private javax.swing.JComboBox jComboBoxSP;
+    private javax.swing.JComboBox jComboBoxStatus;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelComment;
+    private javax.swing.JLabel jLabelCountry;
+    private javax.swing.JLabel jLabelCurrency;
+    private javax.swing.JLabel jLabelFitch;
+    private javax.swing.JLabel jLabelHolidays;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelLongName;
+    private javax.swing.JLabel jLabelMoodys;
+    private javax.swing.JLabel jLabelParent;
+    private javax.swing.JLabel jLabelRoles;
+    private javax.swing.JLabel jLabelSP;
+    private javax.swing.JLabel jLabelShortName;
+    private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTableEntitiesList;
+    private javax.swing.JTable jTableRoles;
+    private javax.swing.JTextArea jTextAreaComment;
+    private javax.swing.JTextField jTextFieldLongName;
+    private javax.swing.JTextField jTextFieldShortName;
+    private javax.swing.JButton queryjButton;
+    private javax.swing.JButton showContractButton;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void componentOpened() {
+        initContext();
+    }
+
+    @Override
+    public void componentClosed() {
+    }
+
+    void writeProperties(java.util.Properties p) {
+
+        p.setProperty("version", "1.0");
+
+    }
+
+    void readProperties(java.util.Properties p) {
+        String version = p.getProperty("version");
+
+    }
+
+    private void initContext() {
+        try {
+            jComboBoxStatus.removeAllItems();
+            jComboBoxStatus.addItem(ProductConst.ProductStatus.Active.name());
+            jComboBoxStatus.addItem(ProductConst.ProductStatus.Inactive.name());
+
+            List<String> entities = (List) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.LOAD_LEGAL_ENTITY_SHORT_NAMES);
+            GUIUtils.fillComboWithNullFirst(jComboBoxParent, entities);
+
+            List<String> countries = (List) DAOCallerAgent.callMethod(CountryAccessor.class, CountryAccessor.LOAD_COUNTRY_NAMES);
+            GUIUtils.fillComboWithNullFirst(jComboBoxCountry, countries);
+
+            List<String> calendars = (List) DAOCallerAgent.callMethod(CalendarAccessor.class, CalendarAccessor.LOAD_CALENDAR_CODES);
+            GUIUtils.fillComboWithNullFirst(jComboBoxHolidays, calendars);
+
+            List<String> roles = (List) DAOCallerAgent.callMethod(LegalEntityAccessor.class, LegalEntityAccessor.GET_ALL_ROLES);
+            GUIUtils.fillCombo(jComboBoxRoles, roles);
+
+            List<String> currencies = (List) DAOCallerAgent.callMethod(CurrencyAccessor.class, CurrencyAccessor.LOAD_CURRENCY_CODES);
+            GUIUtils.fillCombo(jComboBoxCurrency, currencies);
+
+            List<String> ratings = (List) DAOCallerAgent.callMethod(RatingsAccessor.class, RatingsAccessor.GET_RATINGS_BY_AGENCY, RatingsAccessor.MOODYS);
+            GUIUtils.fillComboWithNullFirst(jComboBoxMoodys, ratings);
+
+            ratings = (List) DAOCallerAgent.callMethod(RatingsAccessor.class, RatingsAccessor.GET_RATINGS_BY_AGENCY, RatingsAccessor.SP);
+            GUIUtils.fillComboWithNullFirst(jComboBoxSP, ratings);
+
+            ratings = (List) DAOCallerAgent.callMethod(RatingsAccessor.class, RatingsAccessor.GET_RATINGS_BY_AGENCY, RatingsAccessor.FITCH);
+            GUIUtils.fillComboWithNullFirst(jComboBoxFitch, ratings);
+
+            displayList();
+        } catch (Exception ex) {
+            logger.error(StringUtils.formatErrorMessage(ex));
+        }
+    }
+}

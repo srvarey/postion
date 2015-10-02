@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gaia.gui.common
+OpenIDE-Module-Layer: org/gaia/gui/common/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/gaia/gui/common/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Requires: org.openide.windows.WindowManager
+

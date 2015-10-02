@@ -1,0 +1,45 @@
+app.icon=branding/core/core.jar/org/netbeans/core/startup/frame48.gif
+app.name=${branding.token}
+app.title=GaiaMA
+auxiliary.org-netbeans-modules-apisupport-installer.license-type=gpl.v2
+auxiliary.org-netbeans-modules-apisupport-installer.os-linux=false
+auxiliary.org-netbeans-modules-apisupport-installer.os-macosx=false
+auxiliary.org-netbeans-modules-apisupport-installer.os-solaris=false
+auxiliary.org-netbeans-modules-apisupport-installer.os-windows=true
+auxiliary.org-netbeans-modules-apisupport-installer.pack200-enabled=false
+auxiliary.org-netbeans-spi-editor-hints-projects.perProjectHintSettingsFile=nbproject/cfg_hints.xml
+modules=\
+    ${project.org.gaia.externallib}:\
+    ${project.org.gaia.domain}:\
+    ${project.org.gaia.dao}:\
+    ${project.org.gaia.io.dtcc5_3}:\
+    ${project.org.gaia.io}:\
+    ${project.org.gaia.gui.admin}:\
+    ${project.org.gaia.gui.assets}:\
+    ${project.org.gaia.gui.common}:\
+    ${project.org.gaia.gui.observable}:\
+    ${project.org.gaia.gui.referentials}:\
+    ${project.org.gaia.gui.trades}:\
+    ${project.org.gaia.gui.reports}:\
+    ${project.org.gaia.fpml.fpml_5.recordkeeping}:\
+    ${project.org.gaia.server}:\
+    ${project.org.gaia.login}:\
+    ${project.org.gaia.log}
+project.org.gaia.dao=GaiaDAO
+project.org.gaia.domain=GaiaDomain
+project.org.gaia.externallib=GaiaExternalLib
+project.org.gaia.fpml.fpml_5.recordkeeping=GaiaDTCC5.3.Jaxb
+project.org.gaia.gui.admin=GaiaUIAdmin
+project.org.gaia.gui.assets=GaiaUIAssets
+project.org.gaia.gui.common=GaiaUICommon
+project.org.gaia.gui.observable=GaiaUIObservable
+project.org.gaia.gui.referentials=GaiaUIReferentials
+project.org.gaia.gui.reports=GaiaUIReports
+project.org.gaia.gui.trades=GaiaUITrade
+project.org.gaia.io=GaiaIO
+project.org.gaia.io.dtcc5_3=GaiaDTCC5.3
+project.org.gaia.login=GaiaUILogin
+project.org.gaia.server=GaiaJadeServer
+project.org.gaia.log=GaiaLog
+project.license=lgpl
+run.args.extra=-J-Dlog4j.configuration=org/gaia/log/log4j.properties --laf javax.swing.plaf.nimbus.NimbusLookAndFeel -J-Xms1024m -J-Xmx1024m

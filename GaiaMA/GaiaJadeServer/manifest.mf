@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gaia.server
+OpenIDE-Module-Localizing-Bundle: org/gaia/server/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

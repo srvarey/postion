@@ -1,0 +1,156 @@
+//
+// Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.6 
+// Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+// Généré le : 2013.01.17 à 01:35:40 PM CET 
+//
+
+
+package org.gaia.fpml.fpml_5.recordkeeping;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * A type describing a date when this date is defined in reference to another date through one or several date offsets.
+ * 
+ * <p>Classe Java pour RelativeDateSequence complex type.
+ * 
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * 
+ * <pre>
+ * &lt;complexType name="RelativeDateSequence">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="dateRelativeTo" type="{http://www.fpml.org/FpML-5/recordkeeping}DateReference" minOccurs="0"/>
+ *         &lt;element name="dateOffset" type="{http://www.fpml.org/FpML-5/recordkeeping}DateOffset" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;group ref="{http://www.fpml.org/FpML-5/recordkeeping}BusinessCentersOrReference.model" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "RelativeDateSequence", propOrder = {
+    "dateRelativeTo",
+    "dateOffset",
+    "businessCentersReference",
+    "businessCenters"
+})
+public class RelativeDateSequence {
+
+    protected DateReference dateRelativeTo;
+    protected List<DateOffset> dateOffset;
+    protected BusinessCentersReference businessCentersReference;
+    protected BusinessCenters businessCenters;
+
+    /**
+     * Obtient la valeur de la propriété dateRelativeTo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DateReference }
+     *     
+     */
+    public DateReference getDateRelativeTo() {
+        return dateRelativeTo;
+    }
+
+    /**
+     * Définit la valeur de la propriété dateRelativeTo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DateReference }
+     *     
+     */
+    public void setDateRelativeTo(DateReference value) {
+        this.dateRelativeTo = value;
+    }
+
+    /**
+     * Gets the value of the dateOffset property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the dateOffset property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getDateOffset().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DateOffset }
+     * 
+     * 
+     */
+    public List<DateOffset> getDateOffset() {
+        if (dateOffset == null) {
+            dateOffset = new ArrayList<DateOffset>();
+        }
+        return this.dateOffset;
+    }
+
+    /**
+     * Obtient la valeur de la propriété businessCentersReference.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BusinessCentersReference }
+     *     
+     */
+    public BusinessCentersReference getBusinessCentersReference() {
+        return businessCentersReference;
+    }
+
+    /**
+     * Définit la valeur de la propriété businessCentersReference.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BusinessCentersReference }
+     *     
+     */
+    public void setBusinessCentersReference(BusinessCentersReference value) {
+        this.businessCentersReference = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété businessCenters.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BusinessCenters }
+     *     
+     */
+    public BusinessCenters getBusinessCenters() {
+        return businessCenters;
+    }
+
+    /**
+     * Définit la valeur de la propriété businessCenters.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BusinessCenters }
+     *     
+     */
+    public void setBusinessCenters(BusinessCenters value) {
+        this.businessCenters = value;
+    }
+
+}

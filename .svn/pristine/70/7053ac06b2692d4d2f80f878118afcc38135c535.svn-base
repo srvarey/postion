@@ -1,0 +1,6 @@
+build.compiler.deprecation=false
+file.reference.jade.jar=release/modules/ext/jade.jar
+javac.source=1.7
+javac.compilerargs=-Xlint -Xlint:-serial
+javadoc.arch=${basedir}/arch.xml
+run.args.extra=-J-Djna.nosys=true 

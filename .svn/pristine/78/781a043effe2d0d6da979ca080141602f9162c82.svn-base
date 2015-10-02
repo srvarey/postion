@@ -1,0 +1,780 @@
+/**
+ * Copyright (C) 2013 Gaia Transparence Gaia Transparence, 1 allée Paul Barillon
+ * - 94300 VINCENNES
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation, either version 3.0 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.gaia.gui.observable;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.apache.log4j.Logger;
+import org.gaia.dao.jade.DAOCallerAgent;
+import org.gaia.dao.pricing.DayCountAccessor;
+import org.gaia.dao.referentials.CurrencyAccessor;
+import org.gaia.dao.referentials.FrequencyUtil;
+import org.gaia.dao.trades.ProductAccessor;
+import org.gaia.dao.trades.ProductTypeUtil;
+import org.gaia.domain.utils.StringUtils;
+import org.gaia.domain.trades.Product;
+import org.gaia.domain.trades.ProductCurve;
+import org.gaia.domain.trades.ProductRate;
+import org.gaia.domain.trades.ProductReference;
+import org.gaia.domain.trades.Scheduler;
+import org.gaia.gui.assets.AssetFinder;
+import org.gaia.gui.common.GaiaProductTopComponent;
+import org.gaia.gui.common.MenuManager;
+import org.gaia.gui.utils.GUIUtils;
+import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
+import org.openide.util.NbBundle.Messages;
+import org.openide.windows.TopComponent;
+
+/**
+ * Top component which displays MMKT CURVE UNDERLYING.
+ */
+@ConvertAsProperties(dtd = "-//org.gaia.gui.observable//CurveMMKT//EN", autostore = false)
+@TopComponent.Description(preferredID = "CurveMMKTTopComponent", iconBase = "SET/PATH/TO/ICON/HERE", persistenceType = TopComponent.PERSISTENCE_NEVER)
+@TopComponent.Registration(mode = "editor", openAtStartup = false)
+@ActionID(category = "Window", id = "org.gaia.gui.observable.CurveMMKTTopComponent")
+@ActionReference(path = "Menu"+MenuManager.MMktCurveUnderlyingTopComponentMenu, position = MenuManager.MMKTTopComponent)
+@TopComponent.OpenActionRegistration(displayName = "#CTL_CurveMMKTAction", preferredID = "CurveMMKTTopComponent")
+@Messages({
+    "CTL_CurveMMKTAction=Money Market Curve Underlying",
+    "CTL_CurveMMKTTopComponent=Money Market Curve Underlying",
+    "HINT_CurveMMKTTopComponent=This is a Money Market Curve Underlying window"
+})
+public final class MMktCurveUnderlyingTopComponent extends GaiaProductTopComponent {
+
+    private AssetFinder assetFinder;
+    private static final Logger logger = Logger.getLogger(MMktCurveUnderlyingTopComponent.class);
+    private static ArrayList<ProductTypeUtil.ProductType> curveType = new ArrayList<>();
+
+    public MMktCurveUnderlyingTopComponent() {
+        initComponents();
+        setName(Bundle.CTL_CurveMMKTTopComponent());
+        setToolTipText(Bundle.HINT_CurveMMKTTopComponent());
+        curveType.add(ProductTypeUtil.ProductType.IR_CURVE_MMKT_UNDERLYING);
+        jFormattedTextFieldType.setText(ProductTypeUtil.ProductType.IR_CURVE_MMKT_UNDERLYING.getName());
+
+    }
+
+    @Override
+    public void initContext() {
+        try {
+            List<String> currencies = (List) DAOCallerAgent.callMethod(CurrencyAccessor.class, CurrencyAccessor.LOAD_CURRENCY_CODES);
+            GUIUtils.fillCombo(jComboBoxCurrency, currencies);
+            /**
+             * list of tenors
+             */
+            List<String> tenors = FrequencyUtil.getTenors();
+            GUIUtils.fillCombo(jComboBoxTenor, tenors);
+            /**
+             * list of dayCounts
+             */
+            List<String> dayCounts = (List) DAOCallerAgent.callMethod(DayCountAccessor.class, DayCountAccessor.GET_DAYCOUNTS);
+            GUIUtils.fillCombo(jComboBoxDayCount, dayCounts);
+
+            /**
+             * list of adjustments
+             */
+            GUIUtils.fillCombo(jComboBoxAdjustment, ProductAccessor.getCouponAdjustments());
+            /**
+             * list of frequencies
+             */
+            List<String> frequencies = FrequencyUtil.getFrequencies();
+            GUIUtils.fillCombo(compoundedFrequency, frequencies);
+            compoundedFrequency.setSelectedItem(FrequencyUtil.Frequency.DAILY.name);
+
+
+        } catch (Exception ex) {
+            logger.error(StringUtils.formatErrorMessage(ex));
+        }
+
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        MMKTjPanel = new javax.swing.JPanel();
+        jComboBoxCurrency = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        loadRatingButton = new javax.swing.JButton();
+        jTextFieldFloatingRate = new javax.swing.JTextField();
+        jComboBoxTenor = new javax.swing.JComboBox();
+        jLabel20 = new javax.swing.JLabel();
+        jComboBoxDayCount = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
+        jComboBoxAdjustment = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
+        jFormattedTextFieldPayLag = new javax.swing.JFormattedTextField(integerFormat);
+        jLabel27 = new javax.swing.JLabel();
+        jFormattedTextFieldResetLag = new javax.swing.JFormattedTextField(integerFormat);
+        jLabel28 = new javax.swing.JLabel();
+        jButtonSaveAsNew = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+        jButtonNew = new javax.swing.JButton();
+        jButtonLoad = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jCheckBoxPayBusDays = new javax.swing.JCheckBox();
+        jCheckBoxResetBusLag = new javax.swing.JCheckBox();
+        jCheckBoxResetInArrears = new javax.swing.JCheckBox();
+        jCheckBoxPayInArrears = new javax.swing.JCheckBox();
+        jLabelUnderlyingId = new javax.swing.JLabel();
+        jTextFieldId = new javax.swing.JTextField();
+        jFormattedTextFieldType = new javax.swing.JFormattedTextField();
+        compoundedFrequency = new javax.swing.JComboBox();
+        compoundedCheckBox = new javax.swing.JCheckBox();
+
+        MMKTjPanel.setBackground(new java.awt.Color(254, 252, 254));
+
+        jComboBoxCurrency.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxCurrency.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        jComboBoxCurrency.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCurrencyActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel4.text")); // NOI18N
+
+        loadRatingButton.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(loadRatingButton, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.loadRatingButton.text")); // NOI18N
+        loadRatingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadRatingButtonActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFloatingRate.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextFieldFloatingRate.setEnabled(false);
+
+        jComboBoxTenor.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxTenor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        jComboBoxTenor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTenorActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel20, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel20.text")); // NOI18N
+
+        jComboBoxDayCount.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxDayCount.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel23, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel23.text")); // NOI18N
+
+        jComboBoxAdjustment.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxAdjustment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel24, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel24.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel27, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel27.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel28, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel28.text")); // NOI18N
+
+        jButtonSaveAsNew.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonSaveAsNew, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jButtonSaveAsNew.text")); // NOI18N
+        jButtonSaveAsNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveAsNewActionPerformed(evt);
+            }
+        });
+
+        jButtonSave.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonSave, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jButtonSave.text")); // NOI18N
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+
+        jButtonNew.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonNew, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jButtonNew.text")); // NOI18N
+        jButtonNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewActionPerformed(evt);
+            }
+        });
+
+        jButtonLoad.setBackground(new java.awt.Color(195, 229, 255));
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonLoad, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jButtonLoad.text")); // NOI18N
+        jButtonLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoadActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel13, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabel13.text")); // NOI18N
+
+        jCheckBoxPayBusDays.setBackground(new java.awt.Color(254, 252, 254));
+        org.openide.awt.Mnemonics.setLocalizedText(jCheckBoxPayBusDays, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jCheckBoxPayBusDays.text")); // NOI18N
+
+        jCheckBoxResetBusLag.setBackground(new java.awt.Color(254, 252, 254));
+        org.openide.awt.Mnemonics.setLocalizedText(jCheckBoxResetBusLag, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jCheckBoxResetBusLag.text")); // NOI18N
+
+        jCheckBoxResetInArrears.setBackground(new java.awt.Color(254, 252, 254));
+        org.openide.awt.Mnemonics.setLocalizedText(jCheckBoxResetInArrears, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jCheckBoxResetInArrears.text")); // NOI18N
+
+        jCheckBoxPayInArrears.setBackground(new java.awt.Color(254, 252, 254));
+        org.openide.awt.Mnemonics.setLocalizedText(jCheckBoxPayInArrears, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jCheckBoxPayInArrears.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelUnderlyingId, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jLabelUnderlyingId.text")); // NOI18N
+
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setText(org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jTextFieldId.text")); // NOI18N
+
+        jFormattedTextFieldType.setText(org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.jFormattedTextFieldType.text")); // NOI18N
+        jFormattedTextFieldType.setEnabled(false);
+
+        compoundedFrequency.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        compoundedFrequency.setEnabled(false);
+
+        compoundedCheckBox.setBackground(new java.awt.Color(254, 252, 254));
+        org.openide.awt.Mnemonics.setLocalizedText(compoundedCheckBox, org.openide.util.NbBundle.getMessage(MMktCurveUnderlyingTopComponent.class, "MMktCurveUnderlyingTopComponent.compoundedCheckBox.text")); // NOI18N
+        compoundedCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                compoundedCheckBoxStateChanged(evt);
+            }
+        });
+        compoundedCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compoundedCheckBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MMKTjPanelLayout = new javax.swing.GroupLayout(MMKTjPanel);
+        MMKTjPanel.setLayout(MMKTjPanelLayout);
+        MMKTjPanelLayout.setHorizontalGroup(
+            MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel23))
+                                .addGap(22, 22, 22)
+                                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxAdjustment, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                        .addComponent(jComboBoxDayCount, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(compoundedCheckBox)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(compoundedFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                .addComponent(jButtonLoad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonNew)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSave)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSaveAsNew)
+                                .addGap(83, 83, 83)
+                                .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextFieldFloatingRate)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(loadRatingButton))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxTenor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27)
+                                            .addComponent(jLabel28))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jFormattedTextFieldResetLag, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextFieldPayLag, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                                .addComponent(jCheckBoxPayBusDays)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jCheckBoxPayInArrears))
+                                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                                .addComponent(jCheckBoxResetBusLag)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jCheckBoxResetInArrears))))))
+                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                .addComponent(jLabelUnderlyingId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                                .addComponent(jFormattedTextFieldType, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
+        );
+        MMKTjPanelLayout.setVerticalGroup(
+            MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MMKTjPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBoxTenor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldFloatingRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(loadRatingButton))
+                    .addComponent(jLabelUnderlyingId, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxDayCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel23)
+                        .addComponent(compoundedCheckBox))
+                    .addComponent(compoundedFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxAdjustment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(18, 18, 18)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBoxPayBusDays)
+                        .addComponent(jCheckBoxPayInArrears))
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(jFormattedTextFieldPayLag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBoxResetBusLag)
+                        .addComponent(jCheckBoxResetInArrears))
+                    .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel28)
+                        .addComponent(jFormattedTextFieldResetLag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addGroup(MMKTjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSave)
+                    .addComponent(jButtonLoad)
+                    .addComponent(jButtonNew)
+                    .addComponent(jButtonSaveAsNew)
+                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+
+        jTextFieldId.setVisible(true);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MMKTjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MMKTjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxCurrencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCurrencyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCurrencyActionPerformed
+
+    private void loadRatingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadRatingButtonActionPerformed
+        /**
+         * find underlying
+         */
+        List prodtype = new ArrayList();
+        prodtype.add(ProductTypeUtil.ProductType.INTEREST_RATE_INDEX);
+        assetFinder = new AssetFinder(prodtype);
+
+        NotifyDescriptor nd = new NotifyDescriptor(assetFinder, "Asset Finder", NotifyDescriptor.OK_CANCEL_OPTION,
+                NotifyDescriptor.PLAIN_MESSAGE, null, NotifyDescriptor.OK_OPTION);
+
+        if (DialogDisplayer.getDefault().notify(nd) == NotifyDescriptor.OK_OPTION) {
+            Integer productId = assetFinder.getAssetId();
+
+            if (productId != null) {
+                Product p = (Product) DAOCallerAgent.callMethod(ProductAccessor.class, ProductAccessor.GET_PRODUCT_BY_ID, productId);
+                jLabelUnderlyingId.setText(productId.toString());
+                jTextFieldFloatingRate.setText(p.getShortName());
+                jComboBoxCurrency.setSelectedItem(p.getNotionalCurrency());
+            }
+        }
+    }//GEN-LAST:event_loadRatingButtonActionPerformed
+
+    private void jComboBoxTenorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTenorActionPerformed
+    }//GEN-LAST:event_jComboBoxTenorActionPerformed
+
+    private void jButtonSaveAsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveAsNewActionPerformed
+        /**
+         * save as new
+         */
+        jTextFieldId.setText(StringUtils.EMPTY_STRING);
+        setProduct(null);
+        fillProduct();
+        storeProduct();
+    }//GEN-LAST:event_jButtonSaveAsNewActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        /**
+         * Save product.
+         */
+        fillProduct();
+        storeProduct();
+    }
+
+    public void fillProduct() {
+
+        if (getProduct() == null) {
+            setProduct(new Product());
+        }
+        getProduct().setIsAsset(true);
+        if (!jTextFieldId.getText().isEmpty()) {
+            getProduct().setId(Integer.parseInt(jTextFieldId.getText()));
+        }
+
+        try {
+
+            getProduct().setProductType(jFormattedTextFieldType.getText());
+            getProduct().setNotionalCurrency(jComboBoxCurrency.getSelectedItem().toString());
+            getProduct().setProductReferences(getProductReferences());
+
+
+            /**
+             * product rate
+             */
+            ProductRate productRate = getProduct().getProductRate();
+            if (productRate == null) {
+                productRate = new ProductRate();
+                productRate.setProduct(getProduct());
+                getProduct().setProductRate(productRate);
+            }
+
+            /**
+             * sub products
+             */
+            if (!jLabelUnderlyingId.getText().isEmpty()) {
+                Product underlying = (Product) DAOCallerAgent.callMethod(ProductAccessor.class,
+                        ProductAccessor.GET_PRODUCT_BY_ID, Integer.parseInt(jLabelUnderlyingId.getText()));
+                if (underlying != null) {
+                    getProduct().addUnderlying(underlying);
+                }
+            } else {
+                getProduct().getUnderlyingProducts().clear();
+            }
+
+
+
+
+
+            /**
+             * product curve
+             */
+            ProductCurve curve = getProduct().getProductCurve();
+            if (curve == null) {
+                curve = new ProductCurve();
+                curve.setProduct(getProduct());
+                getProduct().setProductCurve(curve);
+            }
+            curve.setTenor(GUIUtils.getComponentStringValue(jComboBoxTenor));
+
+
+            /**
+             * scheduler
+             */
+            Scheduler scheduler = getProduct().getScheduler();
+            if (scheduler == null) {
+                scheduler = new Scheduler();
+                getProduct().setScheduler(scheduler);
+            }
+
+            if (jComboBoxDayCount.getSelectedItem() != null && !jComboBoxDayCount.getSelectedItem().toString().isEmpty()) {
+                scheduler.setDaycount(jComboBoxDayCount.getSelectedItem().toString());
+            }
+            if (jComboBoxAdjustment.getSelectedItem() != null && !jComboBoxAdjustment.getSelectedItem().toString().isEmpty()) {
+                scheduler.setAdjustment(jComboBoxAdjustment.getSelectedItem().toString());
+            }
+            if (!jFormattedTextFieldPayLag.getText().isEmpty()) {
+                scheduler.setPaymentLag(Integer.valueOf(jFormattedTextFieldPayLag.getText()));
+            }
+            if (!jFormattedTextFieldResetLag.getText().isEmpty()) {
+                scheduler.setResetLag(Integer.valueOf(jFormattedTextFieldResetLag.getText()));
+            }
+            scheduler.setIsPayInArrears(jCheckBoxPayInArrears.isSelected());
+            scheduler.setIsPayLagBusDays(jCheckBoxPayBusDays.isSelected());
+            scheduler.setIsResetInArrears(jCheckBoxResetInArrears.isSelected());
+            scheduler.setIsResetLagBusDays(jCheckBoxResetBusLag.isSelected());
+            scheduler.setIsCompound(compoundedCheckBox.isSelected());
+            scheduler.setCompoundFrequency(GUIUtils.getComponentStringValue(compoundedFrequency));
+            /**
+             * Compound or not
+             */
+            if (scheduler.getIsCompound()) {
+                compoundedCheckBox.setSelected(true);
+                compoundedFrequency.setSelectedItem(scheduler.getCompoundFrequency());
+                compoundedFrequency.setEnabled(true);
+
+            }
+
+
+
+
+        } catch (Exception e) {
+            logger.error(StringUtils.formatErrorMessage(e));
+        }
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewActionPerformed
+        /**
+         * Clear screen
+         */
+        clearFields(this);
+        jLabelUnderlyingId.setText(StringUtils.EMPTY_STRING);
+    }//GEN-LAST:event_jButtonNewActionPerformed
+
+    private void jButtonLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadActionPerformed
+        /**
+         * find and load
+         */
+        AssetFinder assetFinder = new AssetFinder(curveType);
+
+        NotifyDescriptor nd = new NotifyDescriptor(assetFinder, "Curve Finder", NotifyDescriptor.OK_CANCEL_OPTION, NotifyDescriptor.PLAIN_MESSAGE,
+                null, NotifyDescriptor.OK_OPTION);
+
+        if (DialogDisplayer.getDefault().notify(nd) == NotifyDescriptor.OK_OPTION) {
+            Integer curveId = assetFinder.getAssetId();
+            load(curveId);
+            assetFinder.setVisible(false);
+
+        }
+
+
+    }//GEN-LAST:event_jButtonLoadActionPerformed
+
+    private void compoundedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compoundedCheckBoxActionPerformed
+        if (compoundedCheckBox.isSelected()) {
+            compoundedFrequency.setEnabled(true);
+        } else {
+            compoundedFrequency.setEnabled(false);
+        }
+    }//GEN-LAST:event_compoundedCheckBoxActionPerformed
+
+    private void compoundedCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_compoundedCheckBoxStateChanged
+        if (compoundedCheckBox.isSelected()) {
+            compoundedFrequency.setEnabled(true);
+        } else {
+            compoundedFrequency.setEnabled(false);
+        }
+    }//GEN-LAST:event_compoundedCheckBoxStateChanged
+
+    public void storeProduct() {
+        if (getProduct().getNotionalCurrency() == null || getProduct().getNotionalCurrency().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "The currency must not be empty.");
+        } else if (getProduct().loadSingleUnderlying()== null ) {
+            JOptionPane.showMessageDialog(this, "The rate index must not be empty.");
+        } else {
+            try {
+                setProduct((Product) DAOCallerAgent.callMethod(ProductAccessor.class, ProductAccessor.STORE_PRODUCT, getProduct()));
+                if (getProduct().getId() != null) {
+                    jTextFieldId.setText(getProduct().getId().toString());
+                    JOptionPane.showMessageDialog(this, "Saved with id " + getProduct().getId());
+                }
+            } catch (Exception ex) {
+                logger.error(StringUtils.formatErrorMessage(ex));
+            }
+        }
+    }
+
+    public void load(Integer productId) {
+        if (productId != null) {
+            try {
+                setProduct((Product) DAOCallerAgent.callMethod(ProductAccessor.class, ProductAccessor.GET_PRODUCT_BY_ID, productId));
+                List<ProductReference> references = (List) DAOCallerAgent.callMethod(ProductAccessor.class, ProductAccessor.GET_PRODUCT_REFERENCES, productId);
+                getProduct().setProductReferences(references);
+                jTextFieldId.setText(productId.toString());
+
+                jFormattedTextFieldType.setText(getProduct().getProductType());
+                jComboBoxCurrency.setSelectedItem(getProduct().getNotionalCurrency());
+                if (getProduct().loadSingleUnderlying() != null) {
+                    jTextFieldFloatingRate.setText(getProduct().loadSingleUnderlying().getShortName());
+                    jLabelUnderlyingId.setText(getProduct().loadSingleUnderlying().getId().toString());
+                } else {
+                    jLabelUnderlyingId.setText(StringUtils.EMPTY_STRING);
+                    jTextFieldFloatingRate.setText(StringUtils.EMPTY_STRING);
+
+                }
+                if (getProduct().getProductType().equalsIgnoreCase(ProductTypeUtil.ProductType.INTEREST_RATE_INDEX.getName())) {
+                    compoundedCheckBox.setEnabled(true);
+                    compoundedFrequency.setEnabled(true);
+                }
+                if (getProduct().getScheduler() != null) {
+
+                    if (getProduct().getScheduler().getDaycount() != null) {
+                        jComboBoxDayCount.setSelectedItem(getProduct().getScheduler().getDaycount());
+                    } else {
+                        jComboBoxDayCount.setSelectedIndex(0);
+                    }
+                    if (getProduct().getScheduler().getAdjustment() != null) {
+                        jComboBoxAdjustment.setSelectedItem(getProduct().getScheduler().getAdjustment());
+                    } else {
+                        jComboBoxAdjustment.setSelectedIndex(0);
+                    }
+                    if (getProduct().getScheduler().getPaymentLag() != null) {
+                        jFormattedTextFieldPayLag.setText(getProduct().getScheduler().getPaymentLag().toString());
+                    } else {
+                        jFormattedTextFieldPayLag.setText(StringUtils.EMPTY_STRING);
+                    }
+                    if (getProduct().getScheduler().getResetLag() != null) {
+                        jFormattedTextFieldResetLag.setText(getProduct().getScheduler().getResetLag().toString());
+                    } else {
+                        jFormattedTextFieldResetLag.setText(StringUtils.EMPTY_STRING);
+                    }
+
+                    if (getProduct().getScheduler().getIsPayInArrears() != null) {
+                        jCheckBoxPayInArrears.setSelected(getProduct().getScheduler().getIsPayInArrears());
+                    }
+                    if (getProduct().getScheduler().getIsResetInArrears() != null) {
+                        jCheckBoxResetInArrears.setSelected(getProduct().getScheduler().getIsResetInArrears());
+                    }
+                    if (getProduct().getScheduler().getIsPayLagBusDays() != null) {
+                        jCheckBoxPayBusDays.setSelected(getProduct().getScheduler().getIsPayLagBusDays());
+                    }
+                    if (getProduct().getScheduler().getIsResetLagBusDays() != null) {
+                        jCheckBoxResetBusLag.setSelected(getProduct().getScheduler().getIsResetLagBusDays());
+                    }
+
+
+
+                    if (getProduct().getScheduler().getIsPayInArrears() != null) {
+                        jCheckBoxPayInArrears.setSelected(getProduct().getScheduler().getIsPayInArrears());
+                    }
+                    if (getProduct().getScheduler().getIsResetInArrears() != null) {
+                        jCheckBoxResetInArrears.setSelected(getProduct().getScheduler().getIsResetInArrears());
+                    }
+                    if (getProduct().getScheduler().getIsPayLagBusDays() != null) {
+                        jCheckBoxPayBusDays.setSelected(getProduct().getScheduler().getIsPayLagBusDays());
+                    }
+                    if (getProduct().getScheduler().getIsResetLagBusDays() != null) {
+                        jCheckBoxResetBusLag.setSelected(getProduct().getScheduler().getIsResetLagBusDays());
+                    }
+                }
+                if (getProduct().getProductCurve() != null) {
+                    jComboBoxTenor.setSelectedItem(getProduct().getProductCurve().getTenor());
+                } else {
+                    jComboBoxTenor.setSelectedItem(null);
+                }
+
+                productReferences = new ArrayList();
+                for (ProductReference productReference : productReferences) {
+                    getProductReferences().add(productReference);
+                }
+                getProduct().setProductReferences(productReferences);
+                setDisplayName(getName() + StringUtils.SPACE + getProduct().getShortName());
+                /**
+                 * Compound or not
+                 */
+                Scheduler scheduler = getProduct().getScheduler();
+                if (scheduler != null && scheduler.getIsCompound()) {
+                    compoundedCheckBox.setSelected(true);
+                    compoundedFrequency.setSelectedItem(scheduler.getCompoundFrequency());
+                    compoundedFrequency.setEnabled(true);
+                    compoundedFrequency.setSelectedItem(scheduler.getCompoundFrequency());
+                }
+
+
+            } catch (Exception ex) {
+                logger.error(StringUtils.formatErrorMessage(ex));
+            }
+        }
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel MMKTjPanel;
+    private javax.swing.JCheckBox compoundedCheckBox;
+    private javax.swing.JComboBox compoundedFrequency;
+    private javax.swing.JButton jButtonLoad;
+    private javax.swing.JButton jButtonNew;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSaveAsNew;
+    private javax.swing.JCheckBox jCheckBoxPayBusDays;
+    private javax.swing.JCheckBox jCheckBoxPayInArrears;
+    private javax.swing.JCheckBox jCheckBoxResetBusLag;
+    private javax.swing.JCheckBox jCheckBoxResetInArrears;
+    private javax.swing.JComboBox jComboBoxAdjustment;
+    private javax.swing.JComboBox jComboBoxCurrency;
+    private javax.swing.JComboBox jComboBoxDayCount;
+    private javax.swing.JComboBox jComboBoxTenor;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPayLag;
+    private javax.swing.JFormattedTextField jFormattedTextFieldResetLag;
+    private javax.swing.JFormattedTextField jFormattedTextFieldType;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelUnderlyingId;
+    private javax.swing.JTextField jTextFieldFloatingRate;
+    private javax.swing.JTextField jTextFieldId;
+    private javax.swing.JButton loadRatingButton;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void componentOpened() {
+        initContext();
+    }
+
+    @Override
+    public void componentClosed() {
+        // TODO add custom code on component closing
+    }
+
+    void writeProperties(java.util.Properties p) {
+        // better to version settings since initial version as advocated at
+        // http://wiki.apidesign.org/wiki/PropertyFiles
+        p.setProperty("version", "1.0");
+        // TODO store your settings
+    }
+
+    void readProperties(java.util.Properties p) {
+        String version = p.getProperty("version");
+        // TODO read your settings according to their version
+    }
+}

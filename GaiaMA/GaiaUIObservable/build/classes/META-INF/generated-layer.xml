@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Menu">
+        <folder name="Market Data">
+            <folder name="Curve">
+                <file name="org-gaia-gui-observable-CurveTopComponent.shadow">
+                    <!--org.gaia.gui.observable.CurveTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-CurveTopComponent.instance"/>
+                    <attr intvalue="1" name="position"/>
+                </file>
+                <file name="org-gaia-gui-observable-CurveMMKTTopComponent.shadow">
+                    <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-CurveMMKTTopComponent.instance"/>
+                    <attr intvalue="3" name="position"/>
+                </file>
+                <file name="org-gaia-gui-observable-SwapCurveUnderlyingTopComponent.shadow">
+                    <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-SwapCurveUnderlyingTopComponent.instance"/>
+                    <attr intvalue="3" name="position"/>
+                </file>
+            </folder>
+            <file name="org-gaia-gui-observable-FixingTopComponent.shadow">
+                <!--org.gaia.gui.observable.FixingTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-FixingTopComponent.instance"/>
+            </file>
+            <file name="org-gaia-gui-observable-MarketQuotesTopComponent.shadow">
+                <!--org.gaia.gui.observable.MarketQuotesTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-MarketQuotesTopComponent.instance"/>
+                <attr intvalue="1" name="position"/>
+            </file>
+            <file name="org-gaia-gui-observable-ProductHistoricalTopComponent.shadow">
+                <!--org.gaia.gui.observable.ProductHistoricalTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-ProductHistoricalTopComponent.instance"/>
+                <attr intvalue="3" name="position"/>
+            </file>
+            <file name="org-gaia-gui-observable-VolatilityTopComponent.shadow">
+                <!--org.gaia.gui.observable.VolatilityTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-VolatilityTopComponent.instance"/>
+                <attr intvalue="2" name="position"/>
+            </file>
+        </folder>
+        <folder name="Trades">
+            <folder name="FX">
+                <file name="org-gaia-gui-observable-FXOptionExerciseTopComponent.shadow">
+                    <!--org.gaia.gui.observable.FXOptionExerciseTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-FXOptionExerciseTopComponent.instance"/>
+                    <attr intvalue="6" name="position"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="Admin">
+            <file name="org-gaia-gui-observable-GreeksSettingsTopComponent.shadow">
+                <!--org.gaia.gui.observable.GreeksSettingsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-GreeksSettingsTopComponent.instance"/>
+                <attr intvalue="5" name="position"/>
+            </file>
+            <file name="org-gaia-gui-observable-MarketDataSourceTopComponent.shadow">
+                <!--org.gaia.gui.observable.MarketDataSourceTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-MarketDataSourceTopComponent.instance"/>
+                <attr intvalue="6" name="position"/>
+            </file>
+            <file name="org-gaia-gui-observable-PricingSettingsTopComponent.shadow">
+                <!--org.gaia.gui.observable.PricingSettingsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-PricingSettingsTopComponent.instance"/>
+                <attr intvalue="7" name="position"/>
+            </file>
+        </folder>
+        <folder name="Static Data">
+            <folder name="Assets">
+                <file name="org-gaia-gui-observable-RateIndexTopComponent.shadow">
+                    <!--org.gaia.gui.observable.RateIndexTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/org-gaia-gui-observable-RateIndexTopComponent.instance"/>
+                    <attr intvalue="8" name="position"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="CurveTopComponent.settings">
+                <!--org.gaia.gui.observable.CurveTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.CurveTopComponent"/>
+</settings>
+]]></file>
+            <file name="FXOptionExerciseTopComponent.settings">
+                <!--org.gaia.gui.observable.FXOptionExerciseTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.FXOptionExerciseTopComponent"/>
+</settings>
+]]></file>
+            <file name="FixingTopComponent.settings">
+                <!--org.gaia.gui.observable.FixingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.FixingTopComponent"/>
+</settings>
+]]></file>
+            <file name="GreeksSettingsTopComponent.settings">
+                <!--org.gaia.gui.observable.GreeksSettingsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.GreeksSettingsTopComponent"/>
+</settings>
+]]></file>
+            <file name="CurveMMKTTopComponent.settings">
+                <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.MMktCurveUnderlyingTopComponent"/>
+</settings>
+]]></file>
+            <file name="MarketDataSourceTopComponent.settings">
+                <!--org.gaia.gui.observable.MarketDataSourceTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.MarketDataSourceTopComponent"/>
+</settings>
+]]></file>
+            <file name="MarketQuotesTopComponent.settings">
+                <!--org.gaia.gui.observable.MarketQuotesTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.MarketQuotesTopComponent"/>
+</settings>
+]]></file>
+            <file name="PricingSettingsTopComponent.settings">
+                <!--org.gaia.gui.observable.PricingSettingsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.PricingSettingsTopComponent"/>
+</settings>
+]]></file>
+            <file name="ProductHistoricalTopComponent.settings">
+                <!--org.gaia.gui.observable.ProductHistoricalTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.ProductHistoricalTopComponent"/>
+</settings>
+]]></file>
+            <file name="RateIndexTopComponent.settings">
+                <!--org.gaia.gui.observable.RateIndexTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.RateIndexTopComponent"/>
+</settings>
+]]></file>
+            <file name="CurveUnderlyingTopComponent.settings">
+                <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.SwapCurveUnderlyingTopComponent"/>
+</settings>
+]]></file>
+            <file name="VolatilityTopComponent.settings">
+                <!--org.gaia.gui.observable.VolatilityTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.gaia.gui.observable.VolatilityTopComponent"/>
+</settings>
+]]></file>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="CurveTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.CurveTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="CurveTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="FXOptionExerciseTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.FXOptionExerciseTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="FXOptionExerciseTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="FixingTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.FixingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="FixingTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="GreeksSettingsTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.GreeksSettingsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="GreeksSettingsTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="CurveMMKTTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="CurveMMKTTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="MarketDataSourceTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.MarketDataSourceTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="MarketDataSourceTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="MarketQuotesTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.MarketQuotesTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="MarketQuotesTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="PricingSettingsTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.PricingSettingsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="PricingSettingsTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="ProductHistoricalTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.ProductHistoricalTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="ProductHistoricalTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="RateIndexTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.RateIndexTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="RateIndexTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="CurveUnderlyingTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="CurveUnderlyingTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="VolatilityTopComponent.wstcref">
+                    <!--org.gaia.gui.observable.VolatilityTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="VolatilityTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-gaia-gui-observable-CurveTopComponent.instance">
+                <!--org.gaia.gui.observable.CurveTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.CurveTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_CurveAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-FXOptionExerciseTopComponent.instance">
+                <!--org.gaia.gui.observable.FXOptionExerciseTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.FXOptionExerciseTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_FXOptionExerciseAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-FixingTopComponent.instance">
+                <!--org.gaia.gui.observable.FixingTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.FixingTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_FixingAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-GreeksSettingsTopComponent.instance">
+                <!--org.gaia.gui.observable.GreeksSettingsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.GreeksSettingsTopComponent"/>
+                <attr name="preferredID" stringvalue="GreeksSettingsTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_GreeksSettingsAction" name="displayName"/>
+                <attr name="iconBase" stringvalue="org/gaia/gui/observable/greeks.png"/>
+            </file>
+            <file name="org-gaia-gui-observable-CurveMMKTTopComponent.instance">
+                <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.MMktCurveUnderlyingTopComponent"/>
+                <attr name="preferredID" stringvalue="CurveMMKTTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_CurveMMKTAction" name="displayName"/>
+                <attr name="iconBase" stringvalue="SET/PATH/TO/ICON/HERE"/>
+            </file>
+            <file name="org-gaia-gui-observable-MarketDataSourceTopComponent.instance">
+                <!--org.gaia.gui.observable.MarketDataSourceTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.MarketDataSourceTopComponent"/>
+                <attr name="preferredID" stringvalue="MarketDataSourceTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_MarketDataSourceAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-MarketQuotesTopComponent.instance">
+                <!--org.gaia.gui.observable.MarketQuotesTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.MarketQuotesTopComponent"/>
+                <attr name="preferredID" stringvalue="MarketQuotesTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_MarketQuotesAction" name="displayName"/>
+                <attr name="iconBase" stringvalue="org/gaia/gui/reports/marketData.png"/>
+            </file>
+            <file name="org-gaia-gui-observable-PricingSettingsTopComponent.instance">
+                <!--org.gaia.gui.observable.PricingSettingsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.PricingSettingsTopComponent"/>
+                <attr name="preferredID" stringvalue="PricingSettingsTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_PricingSettingsAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-ProductHistoricalTopComponent.instance">
+                <!--org.gaia.gui.observable.ProductHistoricalTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.ProductHistoricalTopComponent"/>
+                <attr name="preferredID" stringvalue="ProductHistoricalTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_ProductHistoricalAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-RateIndexTopComponent.instance">
+                <!--org.gaia.gui.observable.RateIndexTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.RateIndexTopComponent"/>
+                <attr name="preferredID" stringvalue="RateIndexTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_RateIndexAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-SwapCurveUnderlyingTopComponent.instance">
+                <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.SwapCurveUnderlyingTopComponent"/>
+                <attr name="preferredID" stringvalue="CurveUnderlyingTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_CurveUnderlyingAction" name="displayName"/>
+            </file>
+            <file name="org-gaia-gui-observable-VolatilityTopComponent.instance">
+                <!--org.gaia.gui.observable.VolatilityTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.gaia.gui.observable.VolatilityTopComponent"/>
+                <attr
+                    bundlevalue="org.gaia.gui.observable.Bundle#CTL_VolatilityAction" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="xml">
+        <folder name="entities">
+            <folder name="org_gaia_gui_observable">
+                <file name="Curve" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.CurveTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//Curve//EN"/>
+                </file>
+                <file name="FXOptionExerciseTopComponent" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.FXOptionExerciseTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//FXOptionExerciseTopComponent//EN"/>
+                </file>
+                <file name="Fixing" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.FixingTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//Fixing//EN"/>
+                </file>
+                <file name="GreeksSettings" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.GreeksSettingsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//GreeksSettings//EN"/>
+                </file>
+                <file name="CurveMMKT" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//CurveMMKT//EN"/>
+                </file>
+                <file name="MarketDataSource" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.MarketDataSourceTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//MarketDataSource//EN"/>
+                </file>
+                <file name="MarketQuotes" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.MarketQuotesTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//MarketQuotes//EN"/>
+                </file>
+                <file name="PricingSettings" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.PricingSettingsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//PricingSettings//EN"/>
+                </file>
+                <file name="ProductHistorical" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.ProductHistoricalTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//ProductHistorical//EN"/>
+                </file>
+                <file name="RateIndex" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.RateIndexTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//RateIndex//EN"/>
+                </file>
+                <file name="CurveUnderlying" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//CurveUnderlying//EN"/>
+                </file>
+                <file name="Volatility" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.gaia.gui.observable.VolatilityTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.gaia.gui.observable//Volatility//EN"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="memory">
+            <folder name="org">
+                <folder name="gaia">
+                    <folder name="gui">
+                        <folder name="observable">
+                            <file name="CurveTopComponent">
+                                <!--org.gaia.gui.observable.CurveTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/Curve.instance"/>
+                            </file>
+                            <file name="FXOptionExerciseTopComponent">
+                                <!--org.gaia.gui.observable.FXOptionExerciseTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/FXOptionExerciseTopComponent.instance"/>
+                            </file>
+                            <file name="FixingTopComponent">
+                                <!--org.gaia.gui.observable.FixingTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/Fixing.instance"/>
+                            </file>
+                            <file name="GreeksSettingsTopComponent">
+                                <!--org.gaia.gui.observable.GreeksSettingsTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/GreeksSettings.instance"/>
+                            </file>
+                            <file name="MMktCurveUnderlyingTopComponent">
+                                <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/CurveMMKT.instance"/>
+                            </file>
+                            <file name="MarketDataSourceTopComponent">
+                                <!--org.gaia.gui.observable.MarketDataSourceTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/MarketDataSource.instance"/>
+                            </file>
+                            <file name="MarketQuotesTopComponent">
+                                <!--org.gaia.gui.observable.MarketQuotesTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/MarketQuotes.instance"/>
+                            </file>
+                            <file name="PricingSettingsTopComponent">
+                                <!--org.gaia.gui.observable.PricingSettingsTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/PricingSettings.instance"/>
+                            </file>
+                            <file name="ProductHistoricalTopComponent">
+                                <!--org.gaia.gui.observable.ProductHistoricalTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/ProductHistorical.instance"/>
+                            </file>
+                            <file name="RateIndexTopComponent">
+                                <!--org.gaia.gui.observable.RateIndexTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/RateIndex.instance"/>
+                            </file>
+                            <file name="SwapCurveUnderlyingTopComponent">
+                                <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/CurveUnderlying.instance"/>
+                            </file>
+                            <file name="VolatilityTopComponent">
+                                <!--org.gaia.gui.observable.VolatilityTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//org_gaia_gui_observable/Volatility.instance"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+        <folder name="lookups">
+            <folder name="org_gaia_gui_observable">
+                <file name="Curve.instance">
+                    <!--org.gaia.gui.observable.CurveTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.CurveTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.CurveTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="FXOptionExerciseTopComponent.instance">
+                    <!--org.gaia.gui.observable.FXOptionExerciseTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.FXOptionExerciseTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.FXOptionExerciseTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Fixing.instance">
+                    <!--org.gaia.gui.observable.FixingTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.FixingTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.FixingTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="GreeksSettings.instance">
+                    <!--org.gaia.gui.observable.GreeksSettingsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.GreeksSettingsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.GreeksSettingsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="CurveMMKT.instance">
+                    <!--org.gaia.gui.observable.MMktCurveUnderlyingTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.MMktCurveUnderlyingTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.MMktCurveUnderlyingTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="MarketDataSource.instance">
+                    <!--org.gaia.gui.observable.MarketDataSourceTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.MarketDataSourceTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.MarketDataSourceTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="MarketQuotes.instance">
+                    <!--org.gaia.gui.observable.MarketQuotesTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.MarketQuotesTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.MarketQuotesTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="PricingSettings.instance">
+                    <!--org.gaia.gui.observable.PricingSettingsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.PricingSettingsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.PricingSettingsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="ProductHistorical.instance">
+                    <!--org.gaia.gui.observable.ProductHistoricalTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.ProductHistoricalTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.ProductHistoricalTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="RateIndex.instance">
+                    <!--org.gaia.gui.observable.RateIndexTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.RateIndexTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.RateIndexTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="CurveUnderlying.instance">
+                    <!--org.gaia.gui.observable.SwapCurveUnderlyingTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.SwapCurveUnderlyingTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.SwapCurveUnderlyingTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Volatility.instance">
+                    <!--org.gaia.gui.observable.VolatilityTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.gaia.gui.observable.VolatilityTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.gaia.gui.observable.VolatilityTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
